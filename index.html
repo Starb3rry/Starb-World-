@@ -24,5 +24,730 @@ body {
 
 /* Scanlines */
 body::after {
-    co
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.025) 0px,
+        rgba(255,255,255,0.025) 1px,
+        transparent 2px,
+        transparent 5px
+    );
+    z-index: 999;
+}
+
+/* Navigation */
+
+nav {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    border-bottom: 1px solid #222;
+    background: rgba(0,0,0,.65);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.logo {
+    font-weight: 900;
+    letter-spacing: 4px;
+    font-size: 18px;
+}
+
+.logo span {
+    color: #ff1744;
+}
+
+.navstatus {
+    font-size: 12px;
+    color: #666;
+    letter-spacing: 2px;
+}
+
+/* Hero */
+
+.hero {
+    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.badge {
+    border: 1px solid #292929;
+    padding: 8px 14px;
+    border-radius: 30px;
+    color: #888;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+    background: rgba(255,255,255,.02);
+}
+
+h1 {
+    font-size: clamp(50px, 10vw, 110px);
+    line-height: .9;
+    letter-spacing: -5px;
+    margin-bottom: 25px;
+    text-shadow: 0 0 40px rgba(255,0,40,.08);
+}
+
+h1 span {
+    color: #ff1744;
+}
+
+.subtitle {
+    max-width: 600px;
+    color: #777;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* Button */
+
+.enter {
+    margin-top: 35px;
+    padding: 15px 30px;
+    border: 1px solid #333;
+    background: #0b0b0b;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: .3s;
+}
+
+.enter:hover {
+    border-color: #ff1744;
+    box-shadow: 0 0 30px rgba(255,23,68,.15);
+    transform: translateY(-2px);
+}
+
+/* Cards */
+
+.section {
+    padding: 80px 7%;
+}
+
+.section-title {
+    color: #555;
+    letter-spacing: 4px;
+    font-size: 11px;
+    margin-bottom: 25px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 15px;
+}
+
+.card {
+    border: 1px solid #202020;
+    background: rgba(255,255,255,.015);
+    padding: 25px;
+    min-height: 150px;
+    border-radius: 12px;
+    transition: .3s;
+}
+
+.card:hover {
+    border-color: #3b3b3b;
+    transform: translateY(-4px);
+}
+
+.card h3 {
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #666;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Secret terminal */
+
+.terminal {
+    max-width: 800px;
+    margin: auto;
+    border: 1px solid #222;
+    background: #050505;
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: monospace;
+}
+
+.terminal-head {
+    padding: 12px 15px;
+    border-bottom: 1px solid #222;
+    color: #555;
+    font-size: 12px;
+}
+
+.terminal-body {
+    padding: 20px;
+    color: #777;
+    font-size: 13px;
+    line-height: 2;
+}
+
+.green {
+    color: #50fa7b;
+}
+
+/* Footer */
+
+footer {
+    text-align: center;
+    padding: 50px;
+    color: #333;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+/* JUMPSCARE */
+
+#jumpscare {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+#jumpscare.active {
+    display: flex;
+    animation: flash .08s infinite;
+}
+
+.face {
+    width: min(90vw, 600px);
+    height: min(90vh, 750px);
+    position: relative;
+    background:
+        radial-gradient(circle at 35% 38%, #fff 0 3%, transparent 4%),
+        radial-gradient(circle at 65% 38%, #fff 0 3%, transparent 4%),
+        radial-gradient(ellipse at 35% 39%, #111 0 9%, transparent 10%),
+        radial-gradient(ellipse at 65% 39%, #111 0 9%, transparent 10%),
+        radial-gradient(ellipse at 50% 67%, #000 0 18%, transparent 19%),
+        linear-gradient(120deg,#111,#030303);
+    border-radius: 48% 48% 42% 42%;
+    box-shadow:
+        0 0 80px #ff003c,
+        inset 0 0 100px #000;
+    transform: scale(1.15);
+    animation: faceShake .06s infinite;
+}
+
+.face::before,
+.face::after {
+    content: "";
+    position: absolute;
+    top: 25%;
+    width: 100px;
+    height: 45px;
+    background: #000;
+    border-radius: 50%;
+}
+
+.face::before {
+    left: 17%;
+}
+
+.face::after {
+    right: 17%;
+}
+
+.mouth {
+    position: absolute;
+    width: 170px;
+    height: 100px;
+    background: #000;
+    left: 50%;
+    top: 60%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    box-shadow: inset 0 0 30px #ff1744;
+}
+
+.mouth::after {
+    content: "";
+    position: absolute;
+    inset: 15px;
+    border-left: 3px solid #fff;
+    border-right: 3px solid #fff;
+    box-shadow:
+        25px 0 #fff,
+        50px 0 #fff,
+        75px 0 #fff,
+        100px 0 #fff;
+}
+
+.scare-text {
+    position: absolute;
+    bottom: 5%;
+    color: white;
+    font-size: 12px;
+    letter-spacing: 5px;
+    opacity: .5;
+}
+
+@keyframes faceShake {
+    0% { transform: translate(0,0) scale(1.15); }
+    25% { transform: translate(-8px,5px) scale(1.18); }
+    50% { transform: translate(7px,-4px) scale(1.12); }
+    75% { transform: translate(-5px,-6px) scale(1.2); }
+    100% { transform: translate(5px,4px) scale(1.15); }
+}
+
+@keyframes flash {
+    0%,100% { background:#000; }
+    50% { background:#180005; }
+}
+
+/* Mobile */
+
+@media(max-width:600px) {
+    nav {
+        padding: 0 20px;
+    }
+
+    .navstatus {
+        display:none;
+    }
+
+    h1 {
+        letter-spacing: -3px;
+    }
+
+    .section {
+        padding: 60px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">VOID<span>.</span></div>
+    <div class="navstatus">SYSTEM ONLINE // 2026</div>
+</nav>
+
+<section class="hero">
+
+    <div class="badge">RESTRICTED ACCESS</div>
+
+    <h1>WELCOME TO<br><span>THE VOID</span></h1>
+
+    <p class="subtitle">
+        A digital space hidden somewhere between curiosity and paranoia.
+        Explore carefully. Some things were never meant to be found.
+    </p>
+
+    <button class="enter" onclick="activate()">ENTER SYSTEM</button>
+
+</section>
+
+<section class="section">
+
+    <div class="section-title">01 // SYSTEM MODULES</div>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>UNKNOWN</h3>
+            <p>No records found. No explanation available.</p>
+        </div>
+
+        <div class="card">
+            <h3>ARCHIVE</h3>
+            <p>Something appears to be watching the archive.</p>
+        </div>
+
+        <div class="card">
+            <h3>PROTOCOL 17</h3>
+            <p>Do not remain connected longer than necessary.</p>
+        </div>
+
+        <div class="card">
+            <h3>NULL</h3>
+            <p>There is nothing here. Probably.</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="section">
+
+    <div class="section-title">02 // TERMINAL</div>
+
+    <div class="terminal">
+        <div class="terminal-head">
+            VOID_TERMINAL.exe
+        </div>
+
+        <div class="terminal-body">
+            <div>> booting system...</div>
+            <div>> checking connection...</div>
+            <div>> connection established.</div>
+            <div>> scanning visitor...</div>
+            <div class="green">> visitor detected.</div>
+            <div>> monitoring session...</div>
+            <div>> <span id="terminalText">waiting...</span></div>
+        </div>
+    </div>
+
+</section>
+
+<footer>
+    VOID SYSTEM // NOTHING IS EVER REALLY EMPTY
+</footer>
+
+
+<!-- JUMPSCARE -->
+
+<div id="jumpscare">
+
+    <div class="face">
+        <div class="mouth"></div>
+    </div>
+
+    <div class="scare-text">
+        YOU SHOULD HAVE LEFT
+    </div>
+
+</div>
+
+
+<script>
+
+/*
+====================================================
+JUMPSCARE SYSTEM
+====================================================
+*/
+
+let activated = false;
+
+const timer = setTimeout(() => {
+    jumpscare();
+}, 5000);
+
+
+function activate() {
+    document.getElementById("terminalText").textContent =
+        "USER MANUALLY ACTIVATED SYSTEM...";
+}
+
+
+/*
+====================================================
+SCARY AUDIO
+====================================================
+*/
+
+function scarySound() {
+
+    const AudioContext =
+        window.AudioContext || window.webkitAudioContext;
+
+    if (!AudioContext) return;
+
+    const ctx = new AudioContext();
+
+    const master = ctx.createGain();
+    master.gain.value = 0.18;
+    master.connect(ctx.destination);
+
+    // Low rumble
+    const bass = ctx.createOscillator();
+    const bassGain = ctx.createGain();
+
+    bass.type = "sawtooth";
+    bass.frequency.setValueAtTime(45, ctx.currentTime);
+    bass.frequency.exponentialRampToValueAtTime(
+        18,
+        ctx.currentTime + 2
+    );
+
+    bassGain.gain.setValueAtTime(.8, ctx.currentTime);
+    bassGain.gain.exponentialRampToValueAtTime(
+        .01,
+        ctx.currentTime + 2
+    );
+
+    bass.connect(bassGain);
+    bassGain.connect(master);
+
+    // Screech
+    const scream = ctx.createOscillator();
+    const screamGain = ctx.createGain();
+
+    scream.type = "square";
+
+    scream.frequency.setValueAtTime(
+        1200,
+        ctx.currentTime
+    );
+
+    scream.frequency.exponentialRampToValueAtTime(
+        150,
+        ctx.currentTime + 1.5
+    );
+
+    screamGain.gain.setValueAtTime(
+        .25,
+        ctx.currentTime
+    );
+
+    screamGain.gain.exponentialRampToValueAtTime(
+        .01,
+        ctx.currentTime + 1.5
+    );
+
+    scream.connect(screamGain);
+    screamGain.connect(master);
+
+    bass.start();
+    scream.start();
+
+    bass.stop(ctx.currentTime + 2);
+    scream.stop(ctx.currentTime + 2);
+}
+
+
+/*
+====================================================
+JUMPSCARE
+====================================================
+*/
+
+function jumpscare() {
+
+    if (activated) return;
+
+    activated = true;
+
+    const scare =
+        document.getElementById("jumpscare");
+
+    scare.classList.add("active");
+
+    scarySound();
+
+    // Keep jumpscare for exactly 2 seconds
+    setTimeout(() => {
+        scare.classList.remove("active");
+    }, 2000);
+}
+
+
+/*
+====================================================
+10 EASTER EGGS
+====================================================
+*/
+
+/* EASTER EGG #1
+   Press V
+*/
+
+document.addEventListener("keydown", function(e) {
+
+    if (e.key.toLowerCase() === "v") {
+        document.body.style.filter = "invert(1)";
+
+        setTimeout(() => {
+            document.body.style.filter = "";
+        }, 700);
+    }
+
+});
+
+
+/* EASTER EGG #2
+   Press VOID
+*/
+
+let secret = "";
+
+document.addEventListener("keydown", function(e) {
+
+    secret += e.key.toLowerCase();
+
+    if (secret.includes("void")) {
+
+        document.body.style.background =
+            "radial-gradient(circle,#240008,#000)";
+
+        secret = "";
+
+        setTimeout(() => {
+            location.reload();
+        }, 2500);
+    }
+
+    if (secret.length > 20)
+        secret = secret.slice(-10);
+});
+
+
+/* EASTER EGG #3
+   Double click logo
+*/
+
+document.querySelector(".logo")
+.addEventListener("dblclick", () => {
+
+    alert("YOU FOUND SOMETHING THAT WASN'T SUPPOSED TO EXIST.");
+});
+
+
+/* EASTER EGG #4
+   Click NULL card 5 times
+*/
+
+let nullClicks = 0;
+
+document.querySelectorAll(".card")[3]
+.addEventListener("click", () => {
+
+    nullClicks++;
+
+    if (nullClicks >= 5) {
+
+        document.querySelector(".card p").textContent =
+            "NULL IS NOT EMPTY.";
+
+        nullClicks = 0;
+    }
+});
+
+
+/* EASTER EGG #5
+   Press 666
+*/
+
+let numbers = "";
+
+document.addEventListener("keydown", e => {
+
+    if (!isNaN(e.key)) {
+
+        numbers += e.key;
+
+        if (numbers.includes("666")) {
+
+            document.body.style.animation =
+                "shake .1s infinite";
+
+            setTimeout(() => {
+                document.body.style.animation = "";
+            }, 1000);
+
+            numbers = "";
+        }
+    }
+});
+
+
+/* EASTER EGG #6
+   Click badge */
+
+document.querySelector(".badge")
+.addEventListener("click", () => {
+
+    document.querySelector(".badge")
+        .textContent = "YOU FOUND ME";
+});
+
+
+/* EASTER EGG #7
+   Hold mouse on title */
+
+let titleTimer;
+
+document.querySelector("h1")
+.addEventListener("mousedown", () => {
+
+    titleTimer = setTimeout(() => {
+
+        document.querySelector("h1")
+            .innerHTML = "DON'T<br><span>LOOK BEHIND YOU</span>";
+
+    }, 1500);
+
+});
+
+document.querySelector("h1")
+.addEventListener("mouseup", () => {
+    clearTimeout(titleTimer);
+});
+
+
+/* EASTER EGG #8
+   Type 17 */
+
+let seventeen = "";
+
+document.addEventListener("keydown", e => {
+
+    seventeen += e.key;
+
+    if (seventeen.includes("17")) {
+
+        document.querySelector(".navstatus")
+            .textContent = "PROTOCOL 17 ACTIVE";
+
+        seventeen = "";
+    }
+
+    if (seventeen.length > 10)
+        seventeen = seventeen.slice(-5);
+});
+
+
+/* EASTER EGG #9
+   Right click */
+
+document.addEventListener("contextmenu", e => {
+
+    e.preventDefault();
+
+    console.log(
+        "%cYOU SHOULDN'T BE HERE.",
+        "color:red;font-size:30px;font-weight:bold"
+    );
+});
+
+
+/* EASTER EGG #10
+   Move mouse over footer */
+
+document.querySelector("footer")
+.addEventListener("mouseenter", () => {
+
+    document.querySelector("footer")
+        .textContent =
+        "STOP LOOKING FOR SECRETS.";
+});
+
+</script>
+
+</body>
+</html>
 ```
