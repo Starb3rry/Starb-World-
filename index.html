@@ -1,532 +1,203 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>YOU FOUND IT</title>
+<title>Secure Scanner</title>
 
 <style>
-
 * {
     box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
     background: #050505;
-    color: white;
+    color: #00ff88;
     font-family: monospace;
-    overflow-x: hidden;
-}
-
-/* scanlines */
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 100;
-    opacity: 0.06;
-
-    background: repeating-linear-gradient(
-        0deg,
-        transparent 0px,
-        transparent 3px,
-        white 4px
-    );
-}
-
-/* glow */
-
-.glow {
-    position: fixed;
-
-    width: 500px;
-    height: 500px;
-
-    background: white;
-
-    border-radius: 50%;
-
-    filter: blur(180px);
-
-    opacity: 0.07;
-
-    left: 50%;
-    top: 30%;
-
-    transform: translate(-50%, -50%);
-
-    pointer-events: none;
-}
-
-/* main */
-
-main {
-    width: 90%;
-    max-width: 1000px;
-
-    margin: auto;
-}
-
-/* nav */
-
-nav {
+    min-height: 100vh;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
 
-    padding-top: 30px;
-
-    font-size: 13px;
-
-    color: #777;
+.container {
+    width: 92%;
+    max-width: 500px;
+    text-align: center;
+    border: 1px solid #00ff88;
+    padding: 30px 20px;
+    border-radius: 18px;
+    box-shadow: 0 0 30px rgba(0,255,136,.25);
+    background: #080808;
 }
 
 .logo {
-    color: white;
-    letter-spacing: 5px;
-}
-
-.online {
-    color: #777;
-}
-
-.online span {
-    color: white;
-}
-
-/* hero */
-
-.hero {
-    min-height: 85vh;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-}
-
-.small {
-    color: #666;
-
-    letter-spacing: 4px;
-
-    font-size: 11px;
-
-    margin-bottom: 25px;
+    font-size: 45px;
+    margin-bottom: 10px;
 }
 
 h1 {
-    font-size: clamp(60px, 14vw, 150px);
-
-    line-height: 0.8;
-
-    letter-spacing: -8px;
-
-    margin: 0;
+    font-size: 25px;
+    margin: 5px 0;
 }
 
 .subtitle {
-    color: #888;
-
-    max-width: 550px;
-
-    line-height: 1.7;
-
-    margin-top: 35px;
-
-    font-size: 15px;
+    color: #777;
+    margin-bottom: 30px;
 }
 
-/* buttons */
-
-.buttons {
+.scan-circle {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    border-radius: 50%;
+    border: 3px solid #00ff88;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 30px #00ff88;
+    animation: pulse 1.5s infinite;
+}
 
-    gap: 12px;
+.scan-circle span {
+    font-size: 30px;
+}
 
+@keyframes pulse {
+    0%,100% {
+        box-shadow: 0 0 15px #00ff88;
+    }
+    50% {
+        box-shadow: 0 0 45px #00ff88;
+    }
+}
+
+.progress-box {
     margin-top: 30px;
-
-    flex-wrap: wrap;
+    height: 15px;
+    background: #151515;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
-.button {
-    padding: 14px 20px;
-
-    border: 1px solid #333;
-
-    background: #090909;
-
-    color: white;
-
-    text-decoration: none;
-
-    font-family: monospace;
-
-    cursor: pointer;
-
-    transition: 0.2s;
+.progress {
+    width: 0%;
+    height: 100%;
+    background: #00ff88;
+    transition: width .2s;
 }
 
-.button:hover {
-    background: white;
-
-    color: black;
-
-    border-color: white;
-
-    transform: translateY(-3px);
-}
-
-/* sections */
-
-section {
-    border-top: 1px solid #222;
-
-    padding: 70px 0;
-}
-
-.section-title {
-    color: #666;
-
-    letter-spacing: 4px;
-
-    font-size: 11px;
-
-    margin-bottom: 25px;
-}
-
-/* cards */
-
-.cards {
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 12px;
-}
-
-.card {
-    background: #090909;
-
-    border: 1px solid #222;
-
-    padding: 25px;
-
-    min-height: 180px;
-
-    transition: 0.25s;
-}
-
-.card:hover {
-    transform: translateY(-6px);
-
-    border-color: #777;
-}
-
-.card-number {
-    color: #444;
-
-    font-size: 11px;
-}
-
-.card h2 {
-    margin-top: 45px;
-
-    font-size: 19px;
-}
-
-.card p {
-    color: #777;
-
-    font-size: 12px;
-
-    line-height: 1.7;
-}
-
-/* terminal */
-
-.terminal {
-    background: #080808;
-
-    border: 1px solid #222;
-
-    padding: 25px;
-
-    color: #777;
-
-    line-height: 2;
-}
-
-.green {
+.status {
+    margin-top: 15px;
     color: #aaa;
 }
 
-/* secret */
-
-.secret {
-    text-align: center;
-
-    padding: 100px 20px;
+button {
+    margin-top: 25px;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 10px;
+    background: #00ff88;
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-.secret h2 {
-    font-size: 35px;
-
-    margin-bottom: 15px;
+button:hover {
+    box-shadow: 0 0 20px #00ff88;
 }
 
-.secret p {
-    color: #666;
+#result {
+    display: none;
 }
 
-/* footer */
-
-footer {
-    text-align: center;
-
-    padding: 60px 0;
-
-    color: #333;
-
-    font-size: 11px;
+.warning {
+    font-size: 55px;
+    animation: shake .2s infinite;
 }
 
-/* mobile */
-
-@media (max-width: 700px) {
-
-    h1 {
-        letter-spacing: -5px;
-    }
-
-    .cards {
-        grid-template-columns: 1fr;
-    }
-
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    75% { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
 }
 
+.prank {
+    font-size: 42px;
+    color: #ff3b3b;
+    margin-top: 20px;
+}
+
+.small {
+    color: #777;
+    margin-top: 20px;
+}
 </style>
-
 </head>
 
 <body>
 
-<div class="glow"></div>
+<div class="container" id="scanner">
 
-<main>
+    <div class="logo">🛡️</div>
 
-<nav>
+    <h1>SECURE DEVICE SCANNER</h1>
 
-<div class="logo">
-A//01
-</div>
+    <div class="subtitle">
+        Advanced security verification
+    </div>
 
-<div class="online">
-● <span>ONLINE</span>
-</div>
+    <div class="scan-circle">
+        <span id="percent">0%</span>
+    </div>
 
-</nav>
+    <div class="progress-box">
+        <div class="progress" id="progress"></div>
+    </div>
 
+    <div class="status" id="status">
+        Initializing scanner...
+    </div>
 
-<!-- HERO -->
-
-<div class="hero">
-
-<div class="small">
-A RANDOM CORNER OF THE INTERNET
-</div>
-
-<h1>
-YOU<br>
-FOUND<br>
-IT.
-</h1>
-
-<div class="subtitle">
-
-There wasn't supposed to be anything here.
-
-<br>
-
-But somehow...
-
-you found it.
-
-</div>
-
-<div class="buttons">
-
-<a class="button" href="#archive">
-ENTER →
-</a>
-
-<button class="button" onclick="alert('you really clicked it 💀')">
-DON'T CLICK
-</button>
-
-</div>
+    <button onclick="startScan()">
+        START SCAN
+    </button>
 
 </div>
 
 
-<!-- ARCHIVE -->
+<div class="container" id="result">
 
-<section id="archive">
+    <div class="warning">⚠️</div>
 
-<div class="section-title">
-01 / ARCHIVE
-</div>
+    <h1>SCAN COMPLETE</h1>
 
-<div class="cards">
+    <p>
+        Multiple security issues detected.
+    </p>
 
+    <div class="prank">
+        YOU GOT PRANKED 😂
+    </div>
 
-<div class="card">
-
-<div class="card-number">
-01
-</div>
-
-<h2>
-GAMES
-</h2>
-
-<p>
-Games I play, screenshots,
-loadouts and random gaming stuff.
-</p>
+    <div class="small">
+        Nothing actually happened to your device 😭
+    </div>
 
 </div>
 
 
-<div class="card">
+<script>
 
-<div class="card-number">
-02
-</div>
+function startScan() {
 
-<h2>
-RANDOM
-</h2>
+    let progress = 0;
 
-<p>
-Pictures, memes, links,
-thoughts and internet garbage.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-number">
-03
-</div>
-
-<h2>
-SECRET
-</h2>
-
-<p>
-You probably shouldn't
-click this one.
-</p>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-<!-- TERMINAL -->
-
-<section>
-
-<div class="section-title">
-02 / TERMINAL
-</div>
-
-<div class="terminal">
-
-<span class="green">
-guest@internet:~$
-</span>
-
-whoami
-
-<br>
-
-anonymous visitor
-
-<br>
-
-<span class="green">
-guest@internet:~$
-</span>
-
-status
-
-<br>
-
-website discovered
-
-<br>
-
-<span class="green">
-guest@internet:~$
-</span>
-
-location
-
-<br>
-
-somewhere on the internet
-
-<br>
-
-<span class="green">
-guest@internet:~$
-</span>
-
-_
-
-</div>
-
-</section>
-
-
-<!-- SECRET -->
-
-<section class="secret">
-
-<h2>
-YOU MADE IT THIS FAR.
-</h2>
-
-<p>
-There is absolutely nothing here.
-<br><br>
-Probably.
-</p>
-
-</section>
-
-
-<footer>
-
-A//01 · YOU FOUND IT
-
-</footer>
-
-</main>
-
-</body>
-</html>
+    d
+```
