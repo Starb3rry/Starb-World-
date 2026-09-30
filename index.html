@@ -1,14 +1,656 @@
+```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Starb3rry</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>starb3rry</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #f7f8fc;
+    color: #16181d;
+    overflow-x: hidden;
+}
+
+/* ---------- NAVBAR ---------- */
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid #e8e9ee;
+}
+
+.nav-inner {
+    max-width: 1100px;
+    margin: auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    color: #e83e6f;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: #555963;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    color: #e83e6f;
+}
+
+/* ---------- HERO ---------- */
+
+.hero {
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 130px 20px 80px;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,105,150,0.12), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(100,140,255,0.12), transparent 30%),
+        #f7f8fc;
+}
+
+.hero-content {
+    max-width: 750px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 50px;
+    background: white;
+    border: 1px solid #e5e6eb;
+    color: #e83e6f;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 22px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+}
+
+.hero h1 {
+    font-size: clamp(48px, 9vw, 86px);
+    line-height: 0.95;
+    letter-spacing: -5px;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #e83e6f;
+}
+
+.hero p {
+    max-width: 600px;
+    margin: auto;
+    color: #686c76;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.buttons {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 13px 22px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.25s;
+}
+
+.primary {
+    background: #16181d;
+    color: white;
+}
+
+.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.secondary {
+    background: white;
+    color: #16181d;
+    border: 1px solid #dddfe6;
+}
+
+.secondary:hover {
+    transform: translateY(-3px);
+    border-color: #e83e6f;
+}
+
+/* ---------- SECTIONS ---------- */
+
+section {
+    padding: 100px 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-title h2 {
+    font-size: 38px;
+    letter-spacing: -1.5px;
+}
+
+.section-title p {
+    color: #747780;
+    margin-top: 10px;
+}
+
+/* ---------- CARDS ---------- */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.card {
+    background: white;
+    border: 1px solid #e6e7ec;
+    border-radius: 18px;
+    padding: 28px;
+    transition: 0.25s;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.035);
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+}
+
+.card-icon {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+    background: #fff0f4;
+    margin-bottom: 20px;
+    font-size: 21px;
+}
+
+.card h3 {
+    margin-bottom: 8px;
+}
+
+.card p {
+    color: #70737c;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+/* ---------- MEMBERS ---------- */
+
+.member {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff7096, #ffb1c7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.member-info h3 {
+    margin-bottom: 3px;
+}
+
+.member-info p {
+    font-size: 13px;
+}
+
+/* ---------- YOUTUBE ---------- */
+
+.youtube {
+    background: #fff;
+}
+
+.youtube-card {
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+    background: white;
+    border: 1px solid #e5e6eb;
+    border-radius: 22px;
+    padding: 45px 25px;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.05);
+}
+
+.youtube-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.youtube-card h2 {
+    margin-bottom: 10px;
+}
+
+.youtube-card p {
+    color: #737780;
+    margin-bottom: 25px;
+}
+
+/* ---------- EASTER EGG ---------- */
+
+.secret {
+    text-align: center;
+    padding: 70px 20px;
+}
+
+.secret p {
+    color: #9a9da5;
+    font-size: 13px;
+}
+
+/* ---------- FOOTER ---------- */
+
+footer {
+    border-top: 1px solid #e5e6eb;
+    padding: 35px 20px;
+    text-align: center;
+    color: #858892;
+    font-size: 13px;
+    background: white;
+}
+
+footer strong {
+    color: #e83e6f;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 650px) {
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .hero h1 {
+        letter-spacing: -3px;
+    }
+
+    section {
+        padding: 75px 18px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<h1>Hello from Starb3rry 🍓</h1>
+<!-- NAVIGATION -->
 
-<p>If you can see this, GitHub is working.</p>
+<nav>
+    <div class="nav-inner">
+        <div class="logo">starb3<span>rry</span></div>
+
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#members">Members</a>
+            <a href="#youtube">YouTube</a>
+        </div>
+    </div>
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">🍓 Welcome to starb3rry</div>
+
+        <h1>
+            Welcome to<br>
+            <span>starb3rry.</span>
+        </h1>
+
+        <p>
+            A little corner of the internet for my stuff,
+            projects, creations, and whatever else ends up here.
+        </p>
+
+        <div class="buttons">
+            <a class="btn primary" href="#about">Explore</a>
+
+            <a class="btn secondary"
+               href="https://youtube.com/@starb3ryy?si=4Arhw4ERhsIzb3sE"
+               target="_blank">
+                YouTube
+            </a>
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>About</h2>
+            <p>Welcome to my little part of the internet.</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="card-icon">🍓</div>
+                <h3>Who?</h3>
+                <p>
+                    I'm starb3rry. This website is a place
+                    for my projects, ideas and random creations.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>Projects</h3>
+                <p>
+                    New things will appear here over time.
+                    Check back occasionally.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🔗</div>
+                <h3>QR Access</h3>
+                <p>
+                    Some pages may be reached through
+                    QR codes placed around the real world.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- MEMBERS -->
+
+<section id="members">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Members</h2>
+            <p>The people behind the project.</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card member">
+
+                <div class="avatar">M</div>
+
+                <div class="member-info">
+                    <h3>MizmoZX</h3>
+                    <p>Member</p>
+                </div>
+
+            </div>
+
+
+            <div class="card member">
+
+                <div class="avatar">R</div>
+
+                <div class="member-info">
+                    <h3>Rex</h3>
+                    <p>Member</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- YOUTUBE -->
+
+<section id="youtube" class="youtube">
+
+    <div class="container">
+
+        <div class="youtube-card">
+
+            <div class="youtube-icon">▶️</div>
+
+            <h2>YouTube</h2>
+
+            <p>
+                Check out the starb3rry YouTube channel.
+            </p>
+
+            <a
+                class="btn primary"
+                href="https://youtube.com/@starb3ryy?si=4Arhw4ERhsIzb3sE"
+                target="_blank">
+                Visit Channel
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- EASTER EGG AREA -->
+
+<section class="secret">
+
+    <p>
+        You probably won't find all 10 easter eggs... 👀
+    </p>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        Made by <strong>starb3rry</strong> 🍓
+    </p>
+
+</footer>
+
+
+<script>
+
+/*
+========================================
+10 HIDDEN EASTER EGGS
+========================================
+
+1. Click the strawberry logo
+2. Double-click the main title
+3. Press "S"
+4. Press "T"
+5. Press "A"
+6. Press "R"
+7. Press "B"
+8. Press "3"
+9. Click the footer
+10. Type "berry"
+
+They're harmless little secrets.
+*/
+
+let clicks = 0;
+
+/* EASTER EGG 1 — LOGO */
+
+document.querySelector(".logo").addEventListener("click", function() {
+
+    clicks++;
+
+    if (clicks === 3) {
+        this.innerHTML = "🍓 berry mode";
+        alert("You found a secret. 🍓");
+        clicks = 0;
+    }
+
+});
+
+
+/* EASTER EGG 2 — DOUBLE CLICK TITLE */
+
+document.querySelector(".hero h1").addEventListener("dblclick", function() {
+
+    this.style.transform = "rotate(2deg) scale(1.03)";
+    this.style.transition = "0.4s";
+
+    setTimeout(() => {
+        this.style.transform = "";
+    }, 700);
+
+});
+
+
+/* EASTER EGGS 3-8 — KEYBOARD */
+
+let secretKeys = ["s","t","a","r","b","3"];
+let keyIndex = 0;
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key.toLowerCase() === secretKeys[keyIndex]) {
+
+        keyIndex++;
+
+        if (keyIndex === secretKeys.length) {
+
+            document.body.style.transition = "0.5s";
+            document.body.style.background = "#fff0f5";
+
+            alert("⭐ You found the starb3rry secret!");
+
+            setTimeout(() => {
+                document.body.style.background = "";
+            }, 1000);
+
+            keyIndex = 0;
+        }
+
+    } else {
+        keyIndex = 0;
+    }
+
+});
+
+
+/* EASTER EGG 9 — FOOTER */
+
+document.querySelector("footer").addEventListener("click", function() {
+
+    this.innerHTML =
+        "<p>🍓 You found the secret footer.</p>";
+
+});
+
+
+/* EASTER EGG 10 — TYPE BERRY */
+
+let typed = "";
+
+document.addEventListener("keydown", function(event) {
+
+    typed += event.key.toLowerCase();
+
+    if (typed.includes("berry")) {
+
+        alert("🍓 BERRY DETECTED.");
+
+        typed = "";
+    }
+
+    if (typed.length > 20) {
+        typed = typed.slice(-10);
+    }
+
+});
+
+</script>
 
 </body>
 </html>
+```
