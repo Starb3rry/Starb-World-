@@ -114,4 +114,961 @@ body {
 
     padding: 80px 25px;
 }
+
+.small-label {
+    color: #888;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-size: clamp(55px, 10vw, 100px);
+
+    line-height: 0.95;
+
+    letter-spacing: -5px;
+
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #ff3b70;
+}
+
+.hero p {
+    max-width: 590px;
+
+    color: #707070;
+
+    font-size: 17px;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons {
+    display: flex;
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+}
+
+.button {
+    display: inline-block;
+
+    text-decoration: none;
+
+    padding: 13px 21px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.25s;
+}
+
+.primary {
+    background: #171717;
+    color: white;
+}
+
+.primary:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 25px rgba(0,0,0,.15);
+}
+
+.secondary {
+    background: white;
+    color: #222;
+
+    border: 1px solid #ddd;
+}
+
+.secondary:hover {
+    border-color: #aaa;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section {
+    max-width: 1050px;
+
+    margin: auto;
+
+    padding: 90px 25px;
+}
+
+.section-label {
+    color: #999;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+
+    text-transform: uppercase;
+}
+
+.section-title {
+    font-size: 32px;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(230px, 1fr));
+
+    gap: 17px;
+}
+
+.card {
+    background: white;
+
+    border: 1px solid #e9e9e9;
+
+    border-radius: 16px;
+
+    padding: 27px;
+
+    transition: 0.25s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.06);
+
+    border-color: #ddd;
+}
+
+.card-icon {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 11px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff0f4;
+
+    margin-bottom: 20px;
+
+    font-size: 19px;
+}
+
+.card h3 {
+    font-size: 17px;
+
+    margin-bottom: 7px;
+}
+
+.card p {
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   YOUTUBE
+========================= */
+
+.youtube-card {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    background: white;
+
+    border: 1px solid #e9e9e9;
+
+    border-radius: 18px;
+
+    padding: 30px;
+}
+
+.youtube-info h3 {
+    font-size: 21px;
+
+    margin-bottom: 5px;
+}
+
+.youtube-info p {
+    color: #777;
+
+    font-size: 14px;
+}
+
+.youtube-button {
+    white-space: nowrap;
+
+    background: #ff0033;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 12px 18px;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    transition: .2s;
+}
+
+.youtube-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(255,0,51,.18);
+}
+
+
+/* =========================
+   MEMBERS
+========================= */
+
+.members {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+
+    gap: 15px;
+}
+
+.member {
+    background: white;
+
+    border: 1px solid #e9e9e9;
+
+    border-radius: 14px;
+
+    padding: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    transition: .25s;
+}
+
+.member:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.05);
+}
+
+.avatar {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #f0f1f3;
+
+    font-weight: 700;
+
+    font-size: 14px;
+}
+
+.member-name {
+    font-weight: 650;
+}
+
+.member-status {
+    color: #999;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    border-top: 1px solid #e8e8e8;
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    color: #999;
+
+    font-size: 13px;
+}
+
+footer strong {
+    color: #333;
+}
+
+
+/* =========================
+   SECRET EASTER EGG STYLES
+========================= */
+
+.secret-message {
+    position: fixed;
+
+    bottom: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: #171717;
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: .3s;
+
+    z-index: 1000;
+}
+
+.secret-message.show {
+    opacity: 1;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:650px) {
+
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .navlinks {
+        gap: 14px;
+    }
+
+    .navlinks a {
+        font-size: 12px;
+    }
+
+    .hero {
+        min-height: 560px;
+    }
+
+    .hero h1 {
+        letter-spacing: -3px;
+    }
+
+    .youtube-card {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+    <div class="logo" id="logo">
+        starb3<span>rry</span>
+    </div>
+
+    <div class="navlinks">
+
+        <a href="#about">About</a>
+
+        <a href="#youtube">YouTube</a>
+
+        <a href="#members">Members</a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="small-label">
+        Welcome to my website
+    </div>
+
+    <h1>
+        Hey, I'm<br>
+        <span>Starb3rry.</span>
+    </h1>
+
+    <p>
+        Welcome to my little corner of the internet.
+        Check out my stuff, my YouTube, and the people
+        who are part of it.
+    </p>
+
+    <div class="buttons">
+
+        <a href="#youtube"
+           class="button primary">
+            YouTube
+        </a>
+
+        <a href="#members"
+           class="button secondary">
+            Members
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section class="section" id="about">
+
+    <div class="section-label">
+        01 / About
+    </div>
+
+    <h2 class="section-title">
+        A little bit about this place.
+    </h2>
+
+
+    <div class="grid">
+
+        <div class="card">
+
+            <div class="card-icon">
+                ★
+            </div>
+
+            <h3>
+                My Stuff
+            </h3>
+
+            <p>
+                This website is basically the home
+                for my projects, links and random stuff.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                ✦
+            </div>
+
+            <h3>
+                QR Access
+            </h3>
+
+            <p>
+                Scan one of my QR codes and you'll
+                end up right here.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                ◈
+            </div>
+
+            <h3>
+                More Coming
+            </h3>
+
+            <p>
+                This site is still evolving.
+                More stuff will appear here eventually.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     YOUTUBE
+========================= -->
+
+<section class="section" id="youtube">
+
+    <div class="section-label">
+        02 / YouTube
+    </div>
+
+    <h2 class="section-title">
+        Find me on YouTube.
+    </h2>
+
+
+    <div class="youtube-card">
+
+        <div class="youtube-info">
+
+            <h3>
+                Starb3rry
+            </h3>
+
+            <p>
+                Videos, gaming and whatever
+                I feel like uploading.
+            </p>
+
+        </div>
+
+
+        <a
+            class="youtube-button"
+            href="https://youtube.com/@starb3ryy?si=4Arhw4ERhsIzb3sE"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            Visit Channel →
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     MEMBERS
+========================= -->
+
+<section class="section" id="members">
+
+    <div class="section-label">
+        03 / Members
+    </div>
+
+    <h2 class="section-title">
+        The people around here.
+    </h2>
+
+
+    <div class="members">
+
+
+        <div class="member">
+
+            <div class="avatar">
+                M
+            </div>
+
+            <div>
+
+                <div class="member-name">
+                    MizmoZX
+                </div>
+
+                <div class="member-status">
+                    Member
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="member">
+
+            <div class="avatar">
+                R
+            </div>
+
+            <div>
+
+                <div class="member-name">
+                    Rex
+                </div>
+
+                <div class="member-status">
+                    Member
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div>
+        Made by <strong>starb3rry</strong>
+    </div>
+
+    <div style="margin-top:8px;">
+        © 2026 · Thanks for stopping by.
+    </div>
+
+</footer>
+
+
+<!-- SECRET MESSAGE -->
+
+<div
+    class="secret-message"
+    id="secretMessage">
+</div>
+
+
+
+<script>
+
+/*
+====================================================
+10 NORMAL EASTER EGGS
+====================================================
+
+1. Click the logo 5 times
+2. Double click the logo
+3. Press "S"
+4. Press "B"
+5. Press "3"
+6. Type "berry"
+7. Click the About heading
+8. Click the YouTube title
+9. Hover over "Made by starb3rry"
+10. Press the arrow keys in a sequence
+*/
+
+
+const message =
+    document.getElementById("secretMessage");
+
+
+function showSecret(text) {
+
+    message.textContent = text;
+
+    message.classList.add("show");
+
+    setTimeout(() => {
+
+        message.classList.remove("show");
+
+    }, 2500);
+
+}
+
+
+
+/* EASTER EGG 1
+   Click logo 5 times
+*/
+
+let logoClicks = 0;
+
+document
+    .getElementById("logo")
+    .addEventListener("click", () => {
+
+        logoClicks++;
+
+        if (logoClicks === 5) {
+
+            showSecret(
+                "⭐ You found the secret logo!"
+            );
+
+            logoClicks = 0;
+        }
+
+    });
+
+
+
+/* EASTER EGG 2
+   Double click logo
+*/
+
+document
+    .getElementById("logo")
+    .addEventListener("dblclick", () => {
+
+        showSecret(
+            "You clicked twice. Very suspicious."
+        );
+
+    });
+
+
+
+/* EASTER EGG 3
+   Press S
+*/
+
+document.addEventListener("keydown", event => {
+
+    if (event.key.toLowerCase() === "s") {
+
+        showSecret(
+            "🍓 S stands for Starb3rry."
+        );
+
+    }
+
+});
+
+
+
+/* EASTER EGG 4
+   Press B
+*/
+
+document.addEventListener("keydown", event => {
+
+    if (event.key.toLowerCase() === "b") {
+
+        showSecret(
+            "B has been detected."
+        );
+
+    }
+
+});
+
+
+
+/* EASTER EGG 5
+   Press 3
+*/
+
+document.addEventListener("keydown", event => {
+
+    if (event.key === "3") {
+
+        showSecret(
+            "3 is kinda important around here."
+        );
+
+    }
+
+});
+
+
+
+/* EASTER EGG 6
+   Type "berry"
+*/
+
+let typed = "";
+
+document.addEventListener("keydown", event => {
+
+    typed += event.key.toLowerCase();
+
+    if (typed.includes("berry")) {
+
+        showSecret(
+            "🍓 You found the berry."
+        );
+
+        typed = "";
+
+    }
+
+    if (typed.length > 15) {
+
+        typed = typed.slice(-10);
+
+    }
+
+});
+
+
+
+/* EASTER EGG 7
+   Click About heading
+*/
+
+document
+    .querySelector("#about .section-title")
+    .addEventListener("click", () => {
+
+        showSecret(
+            "There isn't actually much to see here... 👀"
+        );
+
+    });
+
+
+
+/* EASTER EGG 8
+   Click YouTube title
+*/
+
+document
+    .querySelector("#youtube .section-title")
+    .addEventListener("click", () => {
+
+        showSecret(
+            "You found the YouTube secret."
+        );
+
+    });
+
+
+
+/* EASTER EGG 9
+   Hover footer name
+*/
+
+document
+    .querySelector("footer strong")
+    .addEventListener("mouseenter", () => {
+
+        showSecret(
+            "Yep. That's me."
+        );
+
+    });
+
+
+
+/* EASTER EGG 10
+   Arrow key sequence
+
+   ↑ ↑ ↓ ↓ ← → ← →
+*/
+
+const secretCode = [
+    "ArrowUp",
+    "ArrowUp",
+    "ArrowDown",
+    "ArrowDown",
+    "ArrowLeft",
+    "ArrowRight",
+    "ArrowLeft",
+    "ArrowRight"
+];
+
+let codePosition = 0;
+
+document.addEventListener("keydown", event => {
+
+    if (event.key === secretCode[codePosition]) {
+
+        codePosition++;
+
+        if (codePosition === secretCode.length) {
+
+            showSecret(
+                "🎮 Secret code unlocked!"
+            );
+
+            codePosition = 0;
+
+        }
+
+    } else {
+
+        codePosition = 0;
+
+    }
+
+});
+
+
+</script>
+
+</body>
+</html>
 ```
+
