@@ -4,190 +4,372 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Secure Scanner</title>
+
+<title>Something Is Here...</title>
 
 <style>
 * {
     box-sizing: border-box;
 }
 
-body {
+html, body {
     margin: 0;
-    background: #050505;
-    color: #00ff88;
-    font-family: monospace;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
+    background: #050505;
+    font-family: Arial, sans-serif;
 }
 
-.container {
-    width: 92%;
-    max-width: 500px;
+body {
+    color: white;
+}
+
+/* START SCREEN */
+
+#startScreen {
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at center, #181818 0%, #050505 65%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+}
+
+.startBox {
     text-align: center;
-    border: 1px solid #00ff88;
-    padding: 30px 20px;
-    border-radius: 18px;
-    box-shadow: 0 0 30px rgba(0,255,136,.25);
-    background: #080808;
+    padding: 30px;
 }
 
-.logo {
-    font-size: 45px;
+.startBox h1 {
+    font-size: clamp(28px, 8vw, 55px);
     margin-bottom: 10px;
+    letter-spacing: 3px;
 }
 
-h1 {
-    font-size: 25px;
-    margin: 5px 0;
-}
-
-.subtitle {
-    color: #777;
+.startBox p {
+    color: #888;
     margin-bottom: 30px;
 }
 
-.scan-circle {
-    width: 150px;
-    height: 150px;
-    margin: auto;
-    border-radius: 50%;
-    border: 3px solid #00ff88;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 30px #00ff88;
-    animation: pulse 1.5s infinite;
-}
-
-.scan-circle span {
-    font-size: 30px;
-}
-
-@keyframes pulse {
-    0%,100% {
-        box-shadow: 0 0 15px #00ff88;
-    }
-    50% {
-        box-shadow: 0 0 45px #00ff88;
-    }
-}
-
-.progress-box {
-    margin-top: 30px;
-    height: 15px;
-    background: #151515;
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.progress {
-    width: 0%;
-    height: 100%;
-    background: #00ff88;
-    transition: width .2s;
-}
-
-.status {
-    margin-top: 15px;
-    color: #aaa;
-}
-
-button {
-    margin-top: 25px;
-    padding: 14px 30px;
-    border: none;
-    border-radius: 10px;
-    background: #00ff88;
-    color: #000;
-    font-weight: bold;
-    font-size: 16px;
+#enterButton {
+    border: 1px solid #666;
+    background: #111;
+    color: white;
+    padding: 16px 35px;
+    border-radius: 8px;
+    font-size: 17px;
     cursor: pointer;
 }
 
-button:hover {
-    box-shadow: 0 0 20px #00ff88;
+#enterButton:active {
+    transform: scale(.96);
 }
 
-#result {
+/* MAIN WEBSITE */
+
+#main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.content {
+    padding: 25px;
+}
+
+.content h1 {
+    font-size: clamp(32px, 9vw, 65px);
+    margin: 0 0 15px;
+}
+
+.content p {
+    color: #888;
+    font-size: 16px;
+}
+
+.timer {
+    margin-top: 35px;
+    color: #555;
+    font-size: 14px;
+}
+
+/* JUMPSCARE */
+
+#jumpscare {
+    position: fixed;
+    inset: 0;
+    background: #000;
     display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
 }
 
-.warning {
-    font-size: 55px;
-    animation: shake .2s infinite;
+#jumpscare.active {
+    display: flex;
+    animation: flash .12s infinite;
 }
 
-@keyframes shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-3px); }
-    50% { transform: translateX(3px); }
-    75% { transform: translateX(-3px); }
-    100% { transform: translateX(0); }
+@keyframes flash {
+    0% {
+        background: #000;
+    }
+
+    50% {
+        background: #171717;
+    }
+
+    100% {
+        background: #000;
+    }
 }
 
-.prank {
-    font-size: 42px;
-    color: #ff3b3b;
-    margin-top: 20px;
+/* HORROR FIGURE */
+
+.figure {
+    position: relative;
+    width: 210px;
+    height: 500px;
+    transform: scale(1.1);
+    animation: figureShake .06s infinite;
 }
 
-.small {
-    color: #777;
-    margin-top: 20px;
+@keyframes figureShake {
+    0% {
+        transform: translate(0,0) scale(1.1);
+    }
+
+    25% {
+        transform: translate(-3px,2px) scale(1.1);
+    }
+
+    50% {
+        transform: translate(3px,-2px) scale(1.1);
+    }
+
+    75% {
+        transform: translate(-2px,-2px) scale(1.1);
+    }
+
+    100% {
+        transform: translate(0,0) scale(1.1);
+    }
+}
+
+/* HEAD */
+
+.head {
+    position: absolute;
+    top: 25px;
+    left: 45px;
+    width: 120px;
+    height: 150px;
+    background: #111;
+    border-radius: 48% 48% 45% 45%;
+    box-shadow: 0 0 35px #000;
+}
+
+/* EYES */
+
+.eye {
+    position: absolute;
+    top: 60px;
+    width: 28px;
+    height: 14px;
+    background: white;
+    border-radius: 50%;
+    box-shadow:
+        0 0 15px white,
+        0 0 35px white;
+}
+
+.eye.left {
+    left: 23px;
+}
+
+.eye.right {
+    right: 23px;
+}
+
+/* MOUTH */
+
+.mouth {
+    position: absolute;
+    left: 28px;
+    bottom: 20px;
+    width: 64px;
+    height: 42px;
+    background: #000;
+    border-radius: 10px 10px 50% 50%;
+    box-shadow: inset 0 0 15px #222;
+}
+
+.mouth::before,
+.mouth::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 5px;
+    height: 20px;
+    background: #eee;
+}
+
+.mouth::before {
+    left: 18px;
+}
+
+.mouth::after {
+    right: 18px;
+}
+
+/* BODY */
+
+.body {
+    position: absolute;
+    top: 160px;
+    left: 35px;
+    width: 140px;
+    height: 280px;
+    background: #090909;
+    border-radius: 45% 45% 10% 10%;
+    box-shadow: 0 0 30px #000;
+}
+
+/* ARMS */
+
+.arm {
+    position: absolute;
+    top: 180px;
+    width: 40px;
+    height: 260px;
+    background: #080808;
+    border-radius: 30px;
+}
+
+.arm.left {
+    left: 0;
+    transform: rotate(8deg);
+}
+
+.arm.right {
+    right: 0;
+    transform: rotate(-8deg);
+}
+
+/* FINGERS */
+
+.hand {
+    position: absolute;
+    bottom: -25px;
+    width: 45px;
+    height: 50px;
+    background: #080808;
+    border-radius: 50%;
+}
+
+.arm.left .hand {
+    left: -3px;
+}
+
+.arm.right .hand {
+    right: -3px;
+}
+
+/* FINAL MESSAGE */
+
+#message {
+    position: absolute;
+    bottom: 35px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 4px;
+    color: white;
+    text-shadow: 0 0 10px white;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container" id="scanner">
+<!-- START -->
 
-    <div class="logo">🛡️</div>
+<div id="startScreen">
 
-    <h1>SECURE DEVICE SCANNER</h1>
+    <div class="startBox">
 
-    <div class="subtitle">
-        Advanced security verification
+        <h1>DO NOT LOOK AWAY</h1>
+
+        <p>
+            Tap below to continue.
+        </p>
+
+        <button id="enterButton">
+            ENTER
+        </button>
+
     </div>
-
-    <div class="scan-circle">
-        <span id="percent">0%</span>
-    </div>
-
-    <div class="progress-box">
-        <div class="progress" id="progress"></div>
-    </div>
-
-    <div class="status" id="status">
-        Initializing scanner...
-    </div>
-
-    <button onclick="startScan()">
-        START SCAN
-    </button>
 
 </div>
 
 
-<div class="container" id="result">
+<!-- NORMAL PAGE -->
 
-    <div class="warning">⚠️</div>
+<div id="main">
 
-    <h1>SCAN COMPLETE</h1>
+    <div class="content">
 
-    <p>
-        Multiple security issues detected.
-    </p>
+        <h1>Welcome.</h1>
 
-    <div class="prank">
-        YOU GOT PRANKED 😂
+        <p>
+            Stay on this page for a moment.
+        </p>
+
+        <div class="timer" id="timer">
+            Loading...
+        </div>
+
     </div>
 
-    <div class="small">
-        Nothing actually happened to your device 😭
+</div>
+
+
+<!-- JUMPSCARE -->
+
+<div id="jumpscare">
+
+    <div class="figure">
+
+        <div class="head">
+
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+
+            <div class="mouth"></div>
+
+        </div>
+
+        <div class="body"></div>
+
+        <div class="arm left">
+            <div class="hand"></div>
+        </div>
+
+        <div class="arm right">
+            <div class="hand"></div>
+        </div>
+
+    </div>
+
+    <div id="message">
+        I SAW YOU.
     </div>
 
 </div>
@@ -195,9 +377,128 @@ button:hover {
 
 <script>
 
-function startScan() {
+const startScreen = document.getElementById("startScreen");
+const enterButton = document.getElementById("enterButton");
+const jumpscare = document.getElementById("jumpscare");
+const timerText = document.getElementById("timer");
 
-    let progress = 0;
+let audioContext;
 
-    d
+
+/* CREATE JUMPSCARE SOUND */
+
+function createScareSound() {
+
+    if (!audioContext) {
+        audioContext = new (window.AudioContext ||
+            window.webkitAudioContext)();
+    }
+
+    const now = audioContext.currentTime;
+
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+
+    oscillator.type = "sawtooth";
+
+    oscillator.frequency.setValueAtTime(90, now);
+    oscillator.frequency.exponentialRampToValueAtTime(
+        900,
+        now + 0.12
+    );
+
+    gain.gain.setValueAtTime(0.001, now);
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.8,
+        now + 0.02
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        now + 1.8
+    );
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.start(now);
+    oscillator.stop(now + 2);
+}
+
+
+/* START */
+
+enterButton.addEventListener("click", async () => {
+
+    audioContext = new (window.AudioContext ||
+        window.webkitAudioContext)();
+
+    if (audioContext.state === "suspended") {
+        await audioContext.resume();
+    }
+
+    startScreen.style.display = "none";
+
+    startCountdown();
+
+});
+
+
+/* SIX SECOND COUNTDOWN */
+
+function startCountdown() {
+
+    let remaining = 6;
+
+    timerText.textContent =
+        "Stay here... " + remaining;
+
+    const countdown = setInterval(() => {
+
+        remaining--;
+
+        if (remaining > 0) {
+
+            timerText.textContent =
+                "Stay here... " + remaining;
+
+        } else {
+
+            clearInterval(countdown);
+
+            triggerJumpscare();
+
+        }
+
+    }, 1000);
+
+}
+
+
+/* JUMPSCARE */
+
+function triggerJumpscare() {
+
+    jumpscare.classList.add("active");
+
+    createScareSound();
+
+    /* EXACTLY 2 SECONDS */
+
+    setTimeout(() => {
+
+        jumpscare.classList.remove("active");
+
+        timerText.textContent =
+            "That was probably nothing...";
+
+    }, 2000);
+
+}
+
+</script>
+
+</body>
+</html>
 ```
