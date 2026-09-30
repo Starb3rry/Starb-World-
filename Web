@@ -1,408 +1,532 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>YOU FOUND IT</title>
+<title>YOU FOUND IT</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<style>
 
-        html {
-            scroll-behavior: smooth;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background: #050505;
-            color: white;
-            font-family: monospace;
-            overflow-x: hidden;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        /* Scanline effect */
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 999;
-            opacity: 0.07;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent 0px,
-                transparent 3px,
-                white 4px
-            );
-        }
+body {
+    margin: 0;
+    background: #050505;
+    color: white;
+    font-family: monospace;
+    overflow-x: hidden;
+}
 
-        /* Background glow */
-        .glow {
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: white;
-            filter: blur(150px);
-            opacity: 0.08;
-            left: 50%;
-            top: 30%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-        }
+/* scanlines */
 
-        main {
-            width: 90%;
-            max-width: 950px;
-            margin: auto;
-        }
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.06;
 
-        /* NAVIGATION */
+    background: repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 3px,
+        white 4px
+    );
+}
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 30px;
-            margin-bottom: 80px;
-            font-size: 13px;
-        }
+/* glow */
 
-        .logo {
-            letter-spacing: 5px;
-        }
+.glow {
+    position: fixed;
 
-        .status {
-            color: #777;
-        }
+    width: 500px;
+    height: 500px;
 
-        .status span {
-            color: white;
-        }
+    background: white;
 
-        /* HERO */
+    border-radius: 50%;
 
-        .hero {
-            min-height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+    filter: blur(180px);
 
-        .eyebrow {
-            color: #666;
-            font-size: 12px;
-            letter-spacing: 4px;
-            margin-bottom: 20px;
-        }
+    opacity: 0.07;
 
-        h1 {
-            font-size: clamp(55px, 13vw, 125px);
-            line-height: 0.82;
-            letter-spacing: -7px;
-            margin: 0 0 30px;
-        }
+    left: 50%;
+    top: 30%;
 
-        .description {
-            max-width: 600px;
-            color: #888;
-            line-height: 1.7;
-            font-size: 15px;
-        }
+    transform: translate(-50%, -50%);
 
-        /* BUTTONS */
+    pointer-events: none;
+}
 
-        .buttons {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
+/* main */
 
-        .button {
-            display: inline-block;
-            padding: 14px 20px;
-            border: 1px solid #333;
-            background: #090909;
-            color: white;
-            text-decoration: none;
-            font-family: monospace;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+main {
+    width: 90%;
+    max-width: 1000px;
 
-        .button:hover {
-            background: white;
-            color: black;
-            border-color: white;
-            transform: translateY(-3px);
-        }
+    margin: auto;
+}
 
-        /* SECTIONS */
+/* nav */
 
-        section {
-            border-top: 1px solid #222;
-            padding: 60px 0;
-        }
+nav {
+    display: flex;
+    justify-content: space-between;
 
-        /* CARDS */
+    padding-top: 30px;
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-        }
+    font-size: 13px;
 
-        .card {
-            min-height: 160px;
-            padding: 22px;
-            border: 1px solid #222;
-            background: #090909;
-            transition: 0.2s;
-        }
+    color: #777;
+}
 
-        .card:hover {
-            border-color: #777;
-            transform: translateY(-4px);
-        }
+.logo {
+    color: white;
+    letter-spacing: 5px;
+}
 
-        .number {
-            color: #555;
-            font-size: 11px;
-        }
+.online {
+    color: #777;
+}
 
-        .card h2 {
-            font-size: 18px;
-            margin-top: 35px;
-            margin-bottom: 10px;
-        }
+.online span {
+    color: white;
+}
 
-        .card p {
-            color: #777;
-            font-size: 12px;
-            line-height: 1.6;
-        }
+/* hero */
 
-        /* TERMINAL */
+.hero {
+    min-height: 85vh;
 
-        .terminal {
-            border: 1px solid #222;
-            background: #090909;
-            padding: 22px;
-            line-height: 2;
-            color: #888;
-        }
+    display: flex;
+    flex-direction: column;
 
-        .terminal .prompt {
-            color: white;
-        }
+    justify-content: center;
+}
 
-        /* FOOTER */
+.small {
+    color: #666;
 
-        footer {
-            text-align: center;
-            padding: 50px 0;
-            color: #444;
-            font-size: 11px;
-        }
+    letter-spacing: 4px;
 
-        /* MOBILE */
+    font-size: 11px;
 
-        @media (max-width: 650px) {
+    margin-bottom: 25px;
+}
 
-            nav {
-                margin-bottom: 40px;
-            }
+h1 {
+    font-size: clamp(60px, 14vw, 150px);
 
-            h1 {
-                letter-spacing: -4px;
-            }
+    line-height: 0.8;
 
-            .cards {
-                grid-template-columns: 1fr;
-            }
+    letter-spacing: -8px;
 
-            .hero {
-                min-height: 75vh;
-            }
-        }
-    </style>
+    margin: 0;
+}
+
+.subtitle {
+    color: #888;
+
+    max-width: 550px;
+
+    line-height: 1.7;
+
+    margin-top: 35px;
+
+    font-size: 15px;
+}
+
+/* buttons */
+
+.buttons {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 30px;
+
+    flex-wrap: wrap;
+}
+
+.button {
+    padding: 14px 20px;
+
+    border: 1px solid #333;
+
+    background: #090909;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-family: monospace;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.button:hover {
+    background: white;
+
+    color: black;
+
+    border-color: white;
+
+    transform: translateY(-3px);
+}
+
+/* sections */
+
+section {
+    border-top: 1px solid #222;
+
+    padding: 70px 0;
+}
+
+.section-title {
+    color: #666;
+
+    letter-spacing: 4px;
+
+    font-size: 11px;
+
+    margin-bottom: 25px;
+}
+
+/* cards */
+
+.cards {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 12px;
+}
+
+.card {
+    background: #090909;
+
+    border: 1px solid #222;
+
+    padding: 25px;
+
+    min-height: 180px;
+
+    transition: 0.25s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+
+    border-color: #777;
+}
+
+.card-number {
+    color: #444;
+
+    font-size: 11px;
+}
+
+.card h2 {
+    margin-top: 45px;
+
+    font-size: 19px;
+}
+
+.card p {
+    color: #777;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+/* terminal */
+
+.terminal {
+    background: #080808;
+
+    border: 1px solid #222;
+
+    padding: 25px;
+
+    color: #777;
+
+    line-height: 2;
+}
+
+.green {
+    color: #aaa;
+}
+
+/* secret */
+
+.secret {
+    text-align: center;
+
+    padding: 100px 20px;
+}
+
+.secret h2 {
+    font-size: 35px;
+
+    margin-bottom: 15px;
+}
+
+.secret p {
+    color: #666;
+}
+
+/* footer */
+
+footer {
+    text-align: center;
+
+    padding: 60px 0;
+
+    color: #333;
+
+    font-size: 11px;
+}
+
+/* mobile */
+
+@media (max-width: 700px) {
+
+    h1 {
+        letter-spacing: -5px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-    <div class="glow"></div>
+<div class="glow"></div>
 
-    <main>
+<main>
 
-        <!-- NAV -->
+<nav>
 
-        <nav>
-            <div class="logo">
-                A//01
-            </div>
+<div class="logo">
+A//01
+</div>
 
-            <div class="status">
-                ● <span>ONLINE</span>
-            </div>
-        </nav>
+<div class="online">
+● <span>ONLINE</span>
+</div>
 
-
-        <!-- HERO -->
-
-        <div class="hero">
-
-            <div class="eyebrow">
-                A RANDOM CORNER OF THE INTERNET
-            </div>
-
-            <h1>
-                YOU<br>
-                FOUND<br>
-                IT.
-            </h1>
-
-            <p class="description">
-                There isn't supposed to be anything here.<br>
-                But since you're here... welcome.
-            </p>
-
-            <div class="buttons">
-
-                <a class="button" href="#archive">
-                    ENTER →
-                </a>
-
-                <button class="button" onclick="alert('okay. you clicked it. 😭')">
-                    DON'T CLICK
-                </button>
-
-            </div>
-
-        </div>
+</nav>
 
 
-        <!-- ARCHIVE -->
+<!-- HERO -->
 
-        <section id="archive">
+<div class="hero">
 
-            <div class="eyebrow">
-                01 / ARCHIVE
-            </div>
+<div class="small">
+A RANDOM CORNER OF THE INTERNET
+</div>
 
-            <div class="cards">
+<h1>
+YOU<br>
+FOUND<br>
+IT.
+</h1>
 
-                <div class="card">
+<div class="subtitle">
 
-                    <div class="number">
-                        01
-                    </div>
+There wasn't supposed to be anything here.
 
-                    <h2>
-                        GAMES
-                    </h2>
+<br>
 
-                    <p>
-                        Things I play.
-                        Things I probably play too much.
-                    </p>
+But somehow...
 
-                </div>
+you found it.
 
+</div>
 
-                <div class="card">
+<div class="buttons">
 
-                    <div class="number">
-                        02
-                    </div>
+<a class="button" href="#archive">
+ENTER →
+</a>
 
-                    <h2>
-                        RANDOM
-                    </h2>
+<button class="button" onclick="alert('you really clicked it 💀')">
+DON'T CLICK
+</button>
 
-                    <p>
-                        Images, links, thoughts
-                        and other internet debris.
-                    </p>
+</div>
 
-                </div>
+</div>
 
 
-                <div class="card">
+<!-- ARCHIVE -->
 
-                    <div class="number">
-                        03
-                    </div>
+<section id="archive">
 
-                    <h2>
-                        SECRET
-                    </h2>
+<div class="section-title">
+01 / ARCHIVE
+</div>
 
-                    <p>
-                        There may or may not be
-                        something hidden here.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
+<div class="cards">
 
 
-        <!-- TERMINAL -->
+<div class="card">
 
-        <section>
+<div class="card-number">
+01
+</div>
 
-            <div class="eyebrow">
-                02 / TERMINAL
-            </div>
+<h2>
+GAMES
+</h2>
 
-            <div class="terminal">
+<p>
+Games I play, screenshots,
+loadouts and random gaming stuff.
+</p>
 
-                <span class="prompt">
-                    guest@internet:~$
-                </span>
-                whoami
-
-                <br>
-
-                anonymous visitor
-
-                <br>
-
-                <span class="prompt">
-                    guest@internet:~$
-                </span>
-                status
-
-                <br>
-
-                you found the website
-
-                <br>
-
-                <span class="prompt">
-                    guest@internet:~$
-                </span>
-                _
-
-            </div>
-
-        </section>
+</div>
 
 
-        <!-- FOOTER -->
+<div class="card">
 
-        <footer>
-            made for the curious · A//01
-        </footer>
+<div class="card-number">
+02
+</div>
 
-    </main>
+<h2>
+RANDOM
+</h2>
+
+<p>
+Pictures, memes, links,
+thoughts and internet garbage.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-number">
+03
+</div>
+
+<h2>
+SECRET
+</h2>
+
+<p>
+You probably shouldn't
+click this one.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- TERMINAL -->
+
+<section>
+
+<div class="section-title">
+02 / TERMINAL
+</div>
+
+<div class="terminal">
+
+<span class="green">
+guest@internet:~$
+</span>
+
+whoami
+
+<br>
+
+anonymous visitor
+
+<br>
+
+<span class="green">
+guest@internet:~$
+</span>
+
+status
+
+<br>
+
+website discovered
+
+<br>
+
+<span class="green">
+guest@internet:~$
+</span>
+
+location
+
+<br>
+
+somewhere on the internet
+
+<br>
+
+<span class="green">
+guest@internet:~$
+</span>
+
+_
+
+</div>
+
+</section>
+
+
+<!-- SECRET -->
+
+<section class="secret">
+
+<h2>
+YOU MADE IT THIS FAR.
+</h2>
+
+<p>
+There is absolutely nothing here.
+<br><br>
+Probably.
+</p>
+
+</section>
+
+
+<footer>
+
+A//01 · YOU FOUND IT
+
+</footer>
+
+</main>
 
 </body>
 </html>
